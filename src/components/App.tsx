@@ -1,28 +1,22 @@
-import React from "react";
-import { ChildComponent } from './ChildComponent';
+import React from 'react';
+import { User } from '../model/Model';
+import { Services } from '../services/Services';
+import { Login } from './Login';
 
-interface AppState {
-    appCouter: number
+interface AppState{
+    user: User | undefined
 }
+export class App extends React.Component<{}, AppState>{
 
-export class AppState extends React.Component<{}, AppState>{
-    state: AppState ={
-        appCouter: 0
-    }
-    private incrementCounter(){
-        this.setState({
-            appCouter: this.state.appCouter + 1
-        })
-    }
+    private Services: Services = new Services();
 
     render(){
-        console.log('rendiring child component!');
         return(
-            <div className="ParentComponent">
-                This is the Parent Component! <br/>
-                <button onClick={() => this.incrementCounter()}>Increment parent counter</button>
-                <ChildComponent />
+            <div>App from class component!!!
+                <Login Services={this.Services}/>
             </div>
         )
     }
 }
+
+export default App;
